@@ -24,12 +24,13 @@ public class Exp1 {
 	public static void main(String[] args) throws Exception {
 
 		// Change following paths accordingly
-		String input = "/cpre419/input-5k"; 
+		String input = "/cpre419/input-50m"; 
 		String partitionOutputPath = "/user/jkuczek/lab4/exp1/partition";
 		String output = "/user/jkuczek/lab4/exp1/output/"; 
 
 		// The number of reduce tasks 
 		int reduce_tasks = 10;
+		int samples = 10000000;
 		
 		// job configuration
 		Configuration conf = new Configuration();
@@ -63,7 +64,7 @@ public class Exp1 {
         TotalOrderPartitioner.setPartitionFile(job_one.getConfiguration(), new Path(partitionOutputPath));
         
         // Write partition file with random sampler
-        InputSampler.Sampler<Text, Text> sampler = new InputSampler.RandomSampler<>(0.01, 1000, 100);
+        InputSampler.Sampler<Text, Text> sampler = new InputSampler.RandomSampler<>(0.01, samples, 100);
         InputSampler.writePartitionFile(job_one, sampler);
  
         // Use TotalOrderPartitioner and default identity mapper and reducer 
