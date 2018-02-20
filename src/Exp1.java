@@ -30,6 +30,8 @@ public class Exp1 {
 
 		// The number of reduce tasks 
 		int reduce_tasks = 10;
+		
+		// The maximum number of samples for our random input sampler
 		int samples = 10000000;
 		
 		// job configuration
